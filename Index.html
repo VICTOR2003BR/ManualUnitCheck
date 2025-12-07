@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,34 +11,52 @@
         /* Configuração de Fonte padrão e estilos de barra de rolagem */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f7f9fb; /* Fundo claro e suave */
+            background-color: #f7f9fb;
+            /* Fundo claro e suave */
         }
+
         /* Estilização para uma barra de rolagem mais fina */
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-thumb {
-            background-color: #a0aec0; /* Cor cinza-médio */
+            background-color: #a0aec0;
+            /* Cor cinza-médio */
             border-radius: 4px;
         }
+
         /* Estilo para links ativos na navegação */
         .nav-link.active {
-            background-color: #3b82f6; /* Cor primária do Tailwind (azul) */
+            background-color: #3b82f6;
+            /* Cor primária do Tailwind (azul) */
             color: white;
             font-weight: 600;
             border-radius: 0.375rem;
         }
-         .nav-link.active:hover {
-            background-color: #2563eb; 
+
+        .nav-link.active:hover {
+            background-color: #2563eb;
         }
+
         /* A margem superior de rolagem garante que o título da seção não fique atrás do cabeçalho */
         .content-section {
-            scroll-margin-top: 1rem; 
+            scroll-margin-top: 1rem;
         }
 
         /* Classe para definir a transição do main, garantindo que o ml-64 seja animado */
         #main-content {
             transition: margin-left 0.3s ease-in-out;
+        }
+
+        .ImgDiv {
+            border: solid black 1px;
+            border-radius: 30px;
+            margin: 2%;
+        }
+
+        .ImgDiv IMG {
+            border-radius: 30px;
         }
     </style>
 </head>
@@ -45,65 +64,82 @@
 <body class="flex min-h-screen relative">
 
     <!-- Botão de Menu (FIXO no canto superior direito para visibilidade garantida) -->
-    <button id="menu-button" class="fixed top-4 right-4 p-2 rounded-lg text-gray-700 bg-white shadow-xl border hover:bg-gray-100 z-30 transition-all duration-300" onclick="toggleSidebar()">
+    <button id="menu-button"
+        class="fixed top-4 right-4 p-2 rounded-lg text-gray-700 bg-white shadow-xl border hover:bg-gray-100 z-30 transition-all duration-300"
+        onclick="toggleSidebar()">
         <!-- Ícone de Fechar (Visível por padrão, pois a sidebar inicia aberta) -->
-        <svg id="menu-icon-close" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg id="menu-icon-close" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
         <!-- Ícone de Abrir (Oculto por padrão) -->
-        <svg id="menu-icon-open" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg id="menu-icon-open" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
         </svg>
     </button>
 
     <!-- Sidebar de Navegação (Fixo à esquerda, controlada por JS em todas as telas) -->
     <!-- translate-x-0 garante que ela comece visível -->
-    <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-xl p-4 flex flex-col z-20 transition-transform duration-300 transform translate-x-0">
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 w-64 bg-white shadow-xl p-4 flex flex-col z-20 transition-transform duration-300 transform translate-x-0">
         <h2 class="text-xl font-bold text-gray-800 border-b pb-3 mb-4 flex items-center">
-            <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-5a2 2 0 00-2-2h-2a2 2 0 00-2 2v5zM9 20h5v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5zM12 12a4 4 0 100-8 4 4 0 000 8z"></path></svg>
+            <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-5a2 2 0 00-2-2h-2a2 2 0 00-2 2v5zM9 20h5v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5zM12 12a4 4 0 100-8 4 4 0 000 8z">
+                </path>
+            </svg>
             UnitCheck Manual
         </h2>
 
         <!-- Barra de Pesquisa (Funcionalidade básica de filtro implementada em JS) -->
         <div class="mb-4">
-            <input type="text" id="searchBar" onkeyup="filterNavigation()" placeholder="Pesquisar tópicos..." 
-                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
+            <input type="text" id="searchBar" onkeyup="filterNavigation()" placeholder="Pesquisar tópicos..."
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
         </div>
 
         <!-- Links de Navegação (Menu) -->
         <nav class="space-y-2 overflow-y-auto flex-grow">
-            <a href="#introducao" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg active" onclick="closeSidebarOnMobile()">
+            <a href="#introducao" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg active"
+                onclick="closeSidebarOnMobile()">
                 1. Introdução ao UnitCheck
             </a>
-            <a href="#primeiros-passos" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onclick="closeSidebarOnMobile()">
+            <a href="#primeiros-passos" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
                 2. Primeiros Passos e Login
             </a>
-            <a href="#gestao-equipes" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onclick="closeSidebarOnMobile()">
+            <a href="#gestao-equipes" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
                 3. Gerenciamento de Equipes
             </a>
-            <a href="#gestao-colaboradores" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onclick="closeSidebarOnMobile()">
+            <a href="#gestao-colaboradores" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
                 4. Cadastro e Gestão de Colaboradores
             </a>
-            <a href="#eventos-atividades" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onclick="closeSidebarOnMobile()">
+            <a href="#eventos-atividades" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
                 5. Criação de Eventos e Atividades
             </a>
-            <a href="#lista-presenca" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onclick="closeSidebarOnMobile()">
+            <a href="#lista-presenca" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
                 6. Módulo de Lista de Presença
             </a>
-            <a href="#suporte-faq" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onclick="closeSidebarOnMobile()">
+            <a href="#suporte-faq" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
                 7. Suporte e FAQ
             </a>
         </nav>
-        
+
         <footer class="mt-auto pt-4 border-t text-xs text-gray-500 text-center">
-            &copy; 2023 UnitCheck. Todos os direitos reservados.
+            &copy; 2025 UnitCheck. Todos os direitos reservados.
         </footer>
     </aside>
 
     <!-- Conteúdo Principal (A margem lateral é controlada pelo JS) -->
     <main id="main-content" class="flex-grow ml-64 p-4 sm:p-8">
-        
-        <!-- Cabeçalho Principal (Agora simplificado, sem o botão de toggle) -->
+
+        <!-- Cabeçalho Principal -->
         <div class="mb-8 border-b pb-4">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">
                 Manual de Usuário UnitCheck
@@ -118,20 +154,32 @@
             <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">1. Introdução ao UnitCheck</h2>
             <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6 rounded-md">
                 <p class="font-medium text-blue-800">
-                    O UnitCheck foi desenvolvido como uma ferramenta robusta e intuitiva para simplificar a organização e o controle centralizado das suas equipes e atividades.
+                    O UnitCheck simplifica a organização e o controle das suas equipes. Cadastre colaboradores, crie
+                    equipes,
+                    e gerencie facilmente quem faz parte de cada grupo. Tenha uma visão clara da sua força de trabalho e
+                    otimize
+                    a gestão dos seus projetos.
                 </p>
             </div>
-            
+
             <p class="text-gray-700 mb-4">
-                Esta aplicação foi desenhada para otimizar a gestão de recursos humanos e o acompanhamento de projetos, proporcionando uma visão clara e detalhada de toda a sua força de trabalho e dos compromissos associados. Ao cadastrar colaboradores e estruturá-los em equipes distintas, você obtém um panorama organizacional que facilita a alocação de tarefas e a mensuração de desempenho.
+                Esta aplicação foi desenhada para otimizar a gestão de recursos humanos e o acompanhamento de projetos,
+                proporcionando uma visão clara e detalhada de toda a sua força de trabalho e dos compromissos
+                associados. Ao cadastrar colaboradores e estruturá-los em equipes distintas, você obtém um panorama
+                organizacional que facilita a alocação de tarefas e a mensuração de desempenho.
             </p>
 
             <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Funcionalidades Chave do Sistema:</h4>
             <ul class="list-disc list-inside space-y-2 pl-4 text-gray-700">
-                <li><strong class="text-black-600">Gestão Hierárquica:</strong> Cadastro completo de colaboradores e sua distribuição em equipes específicas.</li>
-                <li><strong class="text-black-600">Controle de Atividades:</strong> Criação e acompanhamento de Eventos e Atividades com status, tipo e nível de prioridade (Baixa, Média, Alta).</li>
-                <li><strong class="text-black-600">Visualização Detalhada:</strong> Visão consolidada por equipe, mostrando membros, informações básicas e o histórico de eventos/atividades concluídos ou pendentes.</li>
-                <li><strong class="text-black-600">Novo Módulo de Presença:</strong> Ferramenta para registrar a participação em treinamentos, reuniões ou eventos corporativos.</li>
+                <li><strong class="text-black-600">Gestão Hierárquica:</strong> Cadastro completo de colaboradores e sua
+                    distribuição em equipes específicas.</li>
+                <li><strong class="text-black-600">Controle de Atividades:</strong> Criação e acompanhamento de Eventos
+                    e Atividades com status, tipo e nível de prioridade (Baixa, Média, Alta).</li>
+                <li><strong class="text-black-600">Visualização Detalhada:</strong> Visão consolidada por equipe,
+                    mostrando membros, informações básicas e o histórico de eventos/atividades concluídos ou pendentes.
+                </li>
+                <li><strong class="text-black-600">Novo Módulo de Presença:</strong> Ferramenta para registrar a
+                    participação em treinamentos, reuniões ou eventos corporativos.</li>
             </ul>
 
             <div class="mt-8 p-4 bg-gray-100 rounded-lg border border-gray-300">
@@ -139,7 +187,8 @@
                     <i class="bi bi-lightbulb mr-2 text-yellow-600"></i> Dica de Uso
                 </h5>
                 <p class="text-sm text-gray-600">
-                    Sugerimos que a criação das equipes seja o primeiro passo após o login inicial, pois os colaboradores e eventos serão subsequentemente vinculados a essas estruturas.
+                    Sugerimos que a criação das equipes seja o primeiro passo após o login inicial, pois os
+                    colaboradores e eventos serão subsequentemente vinculados a essas estruturas.
                 </p>
             </div>
         </section>
@@ -147,60 +196,203 @@
         <!-- 2. PRIMEIROS PASSOS (Placeholder) -->
         <section id="primeiros-passos" class="content-section py-8">
             <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">2. Primeiros Passos e Login</h2>
-            <p class="text-gray-700">
+            <!-- <p class="text-gray-700">
                 Esta seção explicará o processo de acesso ao sistema, desde a tela de login até o dashboard inicial.
+            </p> -->
+            <p class="text-muted mt-2">
+                Ao iniciar o sistema, o usuário será direcionado automaticamente para a tela de login.
+                Essa interface permite o acesso de usuários previamente cadastrados e garante a segurança
+                das informações e funcionalidades disponibilizadas pelo sistema.
             </p>
-            <p class="text-muted italic mt-2">... Conteúdo detalhado sobre Login e Interface do Usuário ...</p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/tela_de_login.png" alt="tela_de_login">
+            </div>
+
+            Caso ainda não possua uma conta, o sistema disponibiliza a opção de criar um novo usuário.
+            Para isso, clique em <strong>“Registrar um novo usuário”</strong>, localizado no canto inferior da tela,
+            ou no botão <strong>“Registrar”</strong> no canto superior direito. Em seguida, você será redirecionado
+            para a página de registro.
+            Caso queira registrar um novo usuario clique em "Registrar um novo usuário" no canto inferior da tela ou em
+            "Registrar" no lado superior direito. após isso você será redirecionado a pagina de registro de usuario.
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/indicacao_registrar_usuario.png" alt="indicacao_registrar_usuario">
+            </div>
+
+            <p class="text-muted mt-4">
+                Na tela de registro, preencha os campos obrigatórios para criação da conta:
+            </p>
+
+            <ul class="text-muted list-disc ml-6">
+                <li>Informe um endereço de e-mail válido no campo <strong>E-mail</strong>.</li>
+
+                <li>
+                    Crie uma senha que atenda aos requisitos de segurança do sistema.
+                    A senha deve:
+                    <ul class="list-disc ml-6 mt-1">
+                        <li>Conter entre <strong>6 e 100 caracteres</strong>;</li>
+                        <li>Possuir ao menos <strong>um caractere alfanumérico</strong>;</li>
+                        <li>Conter ao menos <strong>um dígito de 0 a 9</strong>;</li>
+                        <li>Incluir pelo menos <strong>uma letra maiúscula</strong>.</li>
+                    </ul>
+                </li>
+
+                <li>
+                    No campo <strong>Confirmar Senha</strong>, insira novamente a mesma senha
+                    para garantir que não houveram erros de digitação.
+                </li>
+
+                <li>
+                    Após preencher todos os campos corretamente, clique em <strong>Registrar</strong>
+                    para concluir o cadastro.
+                </li>
+            </ul>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/tela_de_registrar.png" alt="Tela de Registro">
+            </div>
+
+            <div class="mt-8 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                <h5 class="font-bold text-gray-800 mb-2 flex items-center">
+                    <i class="bi bi-lightbulb mr-2 text-yellow-600"></i> Dica de Uso
+                </h5>
+                <p class="text-sm text-gray-600">
+                    Guarde seu e-mail e senha de forma segura para evitar dificuldades de acesso no futuro.
+                </p>
+            </div>
+
+            <p class="text-muted mt-2">
+                Para encerrar a sessão do usuário, clique na opção <strong>“Logout”</strong>, localizada no canto
+                superior direito da tela.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/Logout.png" alt="Logout">
+            </div>
+
+
+
+            </p>
         </section>
-        
+
         <!-- 3. GERENCIAMENTO DE EQUIPES (Placeholder) -->
         <section id="gestao-equipes" class="content-section py-8">
             <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">3. Gerenciamento de Equipes</h2>
-            <p class="text-gray-700">
-                Detalhes sobre como criar, editar e excluir uma equipe, e o significado de cada campo (Nome, Descrição).
+            <!-- <p class="text-gray-700">
+                Essa parte do sistema é responsavel pela criação, edição e gerenciamento das equipes no UnitCheck.
+            </p> -->
+            <p class="text-muted mt-2">Esta área do sistema é responsável pela criação, edição e gerenciamento das
+                equipes cadastradas no UnitCheck.
+            </p><br>
+            <p class="text-muted mt-2">Nessa interface, é possível visualizar todas as equipes registradas no sistema.
             </p>
-            <p class="text-muted italic mt-2">... Conteúdo detalhado sobre Criação/Edição de Equipes ...</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/tela_de_equipes.png" alt="tela_de_equipes">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Criação de Equipes:</h4>
+
+            <p class="text-muted mt-2">Para adicionar uma nova equipe basta clicar no botão <strong>"Criar
+                    equipe"</strong>.</p>
+            <p class="text-muted mt-2">Na tela de criação, preencha todas as informações necessárias: nome da equipe,
+                local de atuação, descrição e, opcionalmente, selecione um líder.
+                Qualquer colaborador previamente cadastrado pode ser definido como líder.</p>
+            <p class="text-muted mt-2">Após preencher os dados, finalize o processo clicando em <strong>“Criar
+                    Equipe”</strong>.</p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/criacao_de_equipes01.png" alt="criacao_de_equipes01">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Gerenciamento de colaboradores e edição de
+                equipes:</h4>
+
+            <p class="text-muted mt-2">Após a criação, a equipe será exibida na página principal de equipes e ficará
+                registrada no banco de dados do sistema.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/criacao_de_equipe02.png" alt="criacao_de_equipe02">
+            </div>
+
+            <p class="text-muted mt-2">Para gerenciar os colaboradores associados à equipe, clique na opção <strong>“Ver
+                    colaboradores”</strong>,
+                que o levará à tela de detalhes da equipe.
+            </p>
+
+            <p class="text-muted mt-2">Nesta tela, selecione a opção <strong>“Gerenciar colaboradores”</strong>.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/detalhes_da_equipe.png" alt="detalhes_da_equipe">
+            </div>
+
+            <p class="text-muted mt-2">EmSerá exibida uma lista com todos os colaboradores cadastrados no sistema.
+                Marque aqueles que deseja adicionar à equipe e clique em <strong>“Salvar Colaboradores”</strong>.
+                Após a confirmação, os colaboradores selecionados passarão a fazer parte da equipe.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/gerenciar_colaboradores.png" alt="gerenciar_colaboradores">
+            </div>
+
+            <p class="text-muted mt-2">Para adicionar ou altera um lider de equipe clique em <strong>"Editar" na tela
+                    principal de equipes,</strong></p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/edicao_de_equipe.png" alt="edicao_de_equipe">
+            </div>
+
+            <p class="text-muted mt-2">Em seguida, localize a opção <strong>“Líder”</strong>, situada na parte inferior
+                da tela, e selecione um dos colaboradores cadastrados para assumir a função de líder da equipe.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/selecao_de_lider.png" alt="selecao_de_lider">
+            </div>
+
+            <p class="text-muted mt-2">Após realizar a seleção desejada, clique em <strong>“Salvar alterações”</strong>.
+                A equipe passará a ter como líder o colaborador escolhido.
+            </p>
+
         </section>
-        
+
         <!-- 4. GESTÃO DE COLABORADORES (Placeholder) -->
         <section id="gestao-colaboradores" class="content-section py-8">
-            <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">4. Cadastro e Gestão de Colaboradores</h2>
+            <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">4. Cadastro e Gestão de Colaboradores
+            </h2>
             <p class="text-gray-700">
-                Instruções passo a passo para o cadastro de novos colaboradores e como associá-los a uma equipe existente.
+                Instruções passo a passo para o cadastro de novos colaboradores e como associá-los a uma equipe
+                existente.
             </p>
             <p class="text-muted italic mt-2">... Conteúdo detalhado sobre Cadastro de Colaboradores ...</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
+
         </section>
-        
+
         <!-- 5. EVENTOS E ATIVIDADES (Placeholder) -->
         <section id="eventos-atividades" class="content-section py-8">
             <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">5. Criação de Eventos e Atividades</h2>
             <p class="text-gray-700">
-                Guia sobre como registrar um novo evento/atividade, configurar o Tipo, o Nível de Prioridade (Baixa, Média, Alta) e a data de finalização prevista.
+                Guia sobre como registrar um novo evento/atividade, configurar o Tipo, o Nível de Prioridade (Baixa,
+                Média, Alta) e a data de finalização prevista.
             </p>
             <p class="text-muted italic mt-2">... Conteúdo detalhado sobre Eventos e Prioridades ...</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
+
         </section>
-        
+
         <!-- 6. LISTA DE PRESENÇA (Placeholder) -->
         <section id="lista-presenca" class="content-section py-8">
             <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">6. Módulo de Lista de Presença</h2>
             <p class="text-gray-700">
-                Este é o novo módulo! Aqui você aprenderá a usar a funcionalidade de Presença, associando a participação dos colaboradores a Eventos específicos (Ex: Treinamentos).
+                Este é o novo módulo! Aqui você aprenderá a usar a funcionalidade de Presença, associando a participação
+                dos colaboradores a Eventos específicos (Ex: Treinamentos).
             </p>
             <p class="text-muted italic mt-2">... Conteúdo detalhado sobre a funcionalidade Presença ...</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
+
         </section>
-        
+
         <!-- 7. SUPORTE E FAQ (Placeholder) -->
         <section id="suporte-faq" class="content-section py-8">
             <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">7. Suporte e FAQ</h2>
@@ -208,18 +400,8 @@
                 Informações de contato para suporte técnico e respostas para as perguntas mais frequentes (FAQ).
             </p>
             <p class="text-muted italic mt-2">... Conteúdo detalhado de Suporte ...</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, nemo? Aliquid quaerat, in fuga autem laboriosam doloribus. Quam enim illo eius, esse expedita voluptatibus optio dolore sed, dolorem debitis soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex harum, laudantium sequi obcaecati nobis error facilis rem expedita! Sint, quis? Deleniti laudantium necessitatibus earum harum. Minus quasi delectus velit?</p>
         </section>
-        
+
 
     </main>
 
@@ -230,7 +412,7 @@
             const mainContent = document.getElementById('main-content');
             const iconOpen = document.getElementById('menu-icon-open');
             const iconClose = document.getElementById('menu-icon-close');
-            
+
             // Verifica se está oculto (classe de translate)
             const isHidden = sidebar.classList.contains('-translate-x-full');
 
@@ -248,11 +430,11 @@
                 iconOpen.classList.remove('hidden');
             }
         }
-        
+
         // Função para fechar a sidebar após clicar em um link
         function closeSidebarOnMobile() {
             // Se a tela for pequena E o menu estiver aberto, feche-o
-            if (window.innerWidth < 640 && !document.getElementById('sidebar').classList.contains('-translate-x-full')) { 
+            if (window.innerWidth < 640 && !document.getElementById('sidebar').classList.contains('-translate-x-full')) {
                 toggleSidebar();
             }
         }
@@ -263,7 +445,7 @@
             const filter = input.value.toUpperCase();
             const nav = document.querySelector('nav');
             const links = nav.getElementsByClassName('nav-link');
-            
+
             for (let i = 0; i < links.length; i++) {
                 const textValue = links[i].textContent || links[i].innerText;
                 if (textValue.toUpperCase().indexOf(filter) > -1) {
@@ -278,13 +460,13 @@
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('.content-section');
             const navLinks = document.querySelectorAll('.nav-link');
-            let current = null; 
+            let current = null;
 
             // Itera pelas seções de baixo para cima (melhor para ScrollSpy)
             for (let i = sections.length - 1; i >= 0; i--) {
                 const section = sections[i];
                 // Offset ajustado para a área de visualização abaixo do topo
-                const offset = 50; 
+                const offset = 50;
 
                 if (window.scrollY >= section.offsetTop - offset) {
                     current = section.getAttribute('id');
@@ -294,13 +476,13 @@
 
             // Se o scrollY for muito pequeno (topo), garantimos 'introducao' como ativo.
             if (!current && window.scrollY < 50) {
-                 current = 'introducao';
+                current = 'introducao';
             }
 
             // Remove a classe 'active' de todos e adiciona ao link correspondente
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                
+
                 // Garante que 'current' não é null E que o href do link corresponde EXATAMENTE à seção atual.
                 if (current && link.getAttribute('href') === '#' + current) {
                     link.classList.add('active');
@@ -309,10 +491,11 @@
         });
 
         // Configuração inicial. A sidebar inicia aberta (translate-x-0) e o main com margem (ml-64).
-        window.onload = function() {
+        window.onload = function () {
             document.querySelector('.nav-link[href="#introducao"]').classList.add('active');
         };
     </script>
 
 </body>
+
 </html>
