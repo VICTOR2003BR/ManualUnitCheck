@@ -58,6 +58,16 @@
         .ImgDiv IMG {
             border-radius: 30px;
         }
+
+        .ImgDivDica {
+            border: solid black 1px;
+            border-radius: 30px;
+            margin: 2%;
+        }
+
+        .ImgDivDica IMG {
+            border-radius: 30px;
+        }
     </style>
 </head>
 
@@ -227,15 +237,14 @@
             <ul class="text-muted list-disc ml-6">
                 <li>Informe um endereço de e-mail válido no campo <strong>E-mail</strong>.</li>
 
-                <li>
-                    Crie uma senha que atenda aos requisitos de segurança do sistema.
-                    A senha deve:
-                    <ul class="list-disc ml-6 mt-1">
-                        <li>Conter entre <strong>6 e 100 caracteres</strong>;</li>
-                        <li>Possuir ao menos <strong>um caractere alfanumérico</strong>;</li>
-                        <li>Conter ao menos <strong>um dígito de 0 a 9</strong>;</li>
-                        <li>Incluir pelo menos <strong>uma letra maiúscula</strong>.</li>
-                    </ul>
+                Crie uma senha que atenda aos requisitos de segurança do sistema.
+                A senha deve:
+                <ul class="list-disc ml-6 mt-1">
+                    <li>Conter entre <strong>6 e 100 caracteres</strong>;</li>
+                    <li>Possuir ao menos <strong>um caractere alfanumérico</strong>;</li>
+                    <li>Conter ao menos <strong>um dígito de 0 a 9</strong>;</li>
+                    <li>Incluir pelo menos <strong>uma letra maiúscula</strong>.</li>
+                </ul>
                 </li>
 
                 <li>
@@ -296,9 +305,11 @@
 
             <p class="text-muted mt-2">Para adicionar uma nova equipe basta clicar no botão <strong>"Criar
                     equipe"</strong>.</p>
+
             <p class="text-muted mt-2">Na tela de criação, preencha todas as informações necessárias: nome da equipe,
-                local de atuação, descrição e, opcionalmente, selecione um líder.
-                Qualquer colaborador previamente cadastrado pode ser definido como líder.</p>
+                local de atuação, descrição e, opcionalmente, selecione um líder. Qualquer colaborador previamente
+                cadastrado pode ser definido como líder.</p>
+
             <p class="text-muted mt-2">Após preencher os dados, finalize o processo clicando em <strong>“Criar
                     Equipe”</strong>.</p>
 
@@ -329,7 +340,7 @@
                 <img src="IMG/Screenshots/Indicacoes/detalhes_da_equipe.png" alt="detalhes_da_equipe">
             </div>
 
-            <p class="text-muted mt-2">EmSerá exibida uma lista com todos os colaboradores cadastrados no sistema.
+            <p class="text-muted mt-2">Será exibida uma lista com todos os colaboradores cadastrados no sistema.
                 Marque aqueles que deseja adicionar à equipe e clique em <strong>“Salvar Colaboradores”</strong>.
                 Após a confirmação, os colaboradores selecionados passarão a fazer parte da equipe.
             </p>
@@ -338,8 +349,9 @@
                 <img src="IMG/Screenshots/Indicacoes/gerenciar_colaboradores.png" alt="gerenciar_colaboradores">
             </div>
 
-            <p class="text-muted mt-2">Para adicionar ou altera um lider de equipe clique em <strong>"Editar" na tela
-                    principal de equipes,</strong></p>
+            <p class="text-muted mt-2">Para adicionar ou altera um lider de equipe clique em <strong>"Editar"</strong>
+                na tela
+                principal de equipes.</p>
 
             <div class="ImgDiv mt-4">
                 <img src="IMG/Screenshots/Indicacoes/edicao_de_equipe.png" alt="edicao_de_equipe">
@@ -363,22 +375,133 @@
         <section id="gestao-colaboradores" class="content-section py-8">
             <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">4. Cadastro e Gestão de Colaboradores
             </h2>
-            <p class="text-gray-700">
+            <!-- <p class="text-gray-700">
                 Instruções passo a passo para o cadastro de novos colaboradores e como associá-los a uma equipe
                 existente.
+            </p> -->
+            <p class="text-muted mt-2">Esta área do sistema é responsável pela visualização, cadastro, edição e exclusão
+                de colaboradores.</p>
+            <p class="text-muted mt-2">Na tela abaixo, é possível visualizar todos os colaboradores cadastrados no
+                UnitCheck.
             </p>
-            <p class="text-muted italic mt-2">... Conteúdo detalhado sobre Cadastro de Colaboradores ...</p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/tela_de_colaboradores.png" alt="tela_de_colaboradores">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Criação, edição e excluzão de colaboradores:</h4>
+
+            <p class="text-muted mt-2">Para adicionar um novo colaborador ao sistema, clique no botão <strong>“Adicionar
+                    Colaborador”</strong>, localizado no canto superior direito da tela.
+            </p>
+
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/adicionar_colaborador01.png" alt="adicionar_colaborador01">
+            </div>
+
+            <p class="text-muted mt-2">Preencha todos os campos solicitados com as informações do colaborador (Nome,
+                Função E-mail, CPF, Telefone, Matrícula e Data de Admissão). Após inserir todos os dados corretamente,
+                clique no botão <strong>“Concluído”</strong>, localizado na parte inferior da tela.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/adicionar_colaborador02.png" alt="adicionar_colaborador02">
+            </div>
+
+            <p class="text-muted mt-2">Após concluir essas etapas, o novo colaborador será registrado com sucesso no
+                sistema UnitCheck.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/adicionar_colaborador03.png" alt="adicionar_colaborador03">
+            </div>
+
+            <p class="text-muted mt-2">Para editar as informações de um colaborador ou removê-lo do banco de dados,
+                utilize os botões <strong>“Editar”</strong> e <strong>“Deletar”</strong>, localizados à direita de cada
+                registro na tabela.
+            </p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/editar_deletar.png" alt="editar_deletar">
+            </div>
+
+            <div class="mt-8 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                <h5 class="font-bold text-gray-800 mb-2 flex items-center">
+                    <i class="bi bi-lightbulb mr-2 text-yellow-600"></i> Dica de Uso
+                </h5>
+                <p class="text-sm text-gray-600">
+                    Caso o sistema possua muitos colaboradores cadastrados, utilize a barra de busca para localizar
+                    rapidamente um colaborador específico.
+
+                </p>
+                <div class="ImgDivDica">
+                    <img src="IMG/Screenshots/Indicacoes/buscar_colaboradores.png" alt="buscar_colaboradores">
+                </div>
+            </div>
 
         </section>
 
         <!-- 5. EVENTOS E ATIVIDADES (Placeholder) -->
         <section id="eventos-atividades" class="content-section py-8">
             <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">5. Criação de Eventos e Atividades</h2>
-            <p class="text-gray-700">
+            <!-- <p class="text-gray-700">
                 Guia sobre como registrar um novo evento/atividade, configurar o Tipo, o Nível de Prioridade (Baixa,
                 Média, Alta) e a data de finalização prevista.
+            </p> -->
+            <p class="text-muted mt-2">Essa área do UnitCheck um dos principais recursos do sistema, ela é responsavel
+                pela criação dee eventos e atividades e sua atribuição a uma equipe cadastrada. Nela você pode criar
+                eventos ou atividades e vincula-los a uma equipe especifica, com a data prevista de finalização do
+                evento, nivel de prioridade e o tipo do evento.</p>
+
+            <p class="text-muted mt-2">Os tipos de evento podem ser:
+            <ul class="text-muted list-disc ml-6">
+                <li>Atividades - Algum trabalho como limpeza.</li>
+                <li>Treinamentos - Como DDS ou allgum treinamento especifico</li>
+                <li>Outros - Para quando não se é especificado o tipo de evento.</li>
+            </ul>
             </p>
-            <p class="text-muted italic mt-2">... Conteúdo detalhado sobre Eventos e Prioridades ...</p>
+
+            <p class="text-muted mt-2">E os niveis de prioridade são:
+            <ul class="text-muted list-disc ml-6">
+                <li>0 - Sem data definida</li>
+                <li>1 - Baixo</li>
+                <li>2 - Medio</li>
+                <li>3 - Alto</li>
+            </ul>
+            </p>
+
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Eventos_e_atividades.png" alt="Eventos_e_atividades">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Criação de eventos:</h4>
+
+            <p class="text-muted mt-2">Para criar um novo evento clique em <strong>"Criar Evento"</strong> no canto
+                superior direito da tela.</p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/criar_evento.png" alt="criar_evento">
+            </div>
+
+            <p class="text-muted mt-2">Depois preeencha os campos requisitados: Nome do evento, tipo (Atividade, treinamento ou outro), selecione a equipe associada, insira a data e a hora prevista de conclusão e selecione o nivel de prioridade. Apois seguir esses passos clique em <strong>"Salvar Evento"</strong>.</p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/criar_evento02.png" alt="criar_evento02">
+            </div>
+
+            <p class="text-muted mt-2">Em seguida o seu evento aparecerar como pendente na tela de Eventos e Atividades, eles estão ordenados por nivel de prioridade.</p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/criar_evento03.png" alt="criar_evento03">
+            </div>
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/visualizar_evento.png" alt="visualizar_evento">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Edição de eventos e como marcal-los como concluido:</h4>
 
         </section>
 
